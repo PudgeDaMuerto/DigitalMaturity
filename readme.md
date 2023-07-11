@@ -8,7 +8,7 @@
     cd <repo>
     ```
 
-2. Create .env file inside repository and add some variables:
+2. Create .env file inside repository and add some variables
     ```shell
     SECRET_KEY # 'some secret'
     DEBUG # 0 or 1
@@ -29,7 +29,7 @@
     docker compose exec django python manage.py collectstatic --no-input --clear
     ```
 
-4. Use dump.sql to insert values in base tables for survey.
+4. Use dump.sql to insert values in base tables for survey
 
    Execute inside postgres container:
    ```shell
