@@ -1,0 +1,38 @@
+{% extends 'digmaturityapp/base.html' %}
+{% block title %}Цифровая зрелость{% endblock %}
+{% block body %}
+    <div class="d-flex flex-row justify-content-end">
+    {% if error %}
+    <div class="alert alert-danger rounded-0">
+        {{ error }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    </div>
+    <form class="vh-90 gradient-custom" method="post">
+    {% csrf_token %}
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <div class="mt-md-4">
+
+              <h2 class="fw-bold mb-2 text-uppercase">ВХОД</h2>
+              <p class="text-white-50 mb-5">Пожалуйста, введите секретный код для входа</p>
+
+              <div class="form-outline form-white mb-4">
+                <input name="code" type="password" id="typePasswordX" class="form-control form-control-lg" required />
+                <label class="form-label" for="typePasswordX">Секретный код</label>
+              </div>
+
+              <button class="btn btn-outline-light btn-lg px-5" type="submit">Войти</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

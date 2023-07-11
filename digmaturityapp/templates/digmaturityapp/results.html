@@ -1,0 +1,70 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}
+{% block branding %}
+<h1 id="site-name">Страница результатов</h1>
+{% endblock %}
+
+{% block content %}
+    <h1>Графики</h1>
+    <div>
+        <form action="" method="get">
+            <label for="year">Год: </label>
+            <select name="year" id="year">
+                <option value="">Все</option>
+                {% for year in years %}
+                    <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+            <label for="faculty">Факультет: </label>
+            <select name="faculty" id="faculty">
+                <option value="" selected>Все</option>
+                {% for f in faculties %}
+                    <option value="{{ f.0 }}">{{ f.1 }}</option>
+                {% endfor %}
+            </select>
+        <button type="submit">Применить</button>
+        </form>
+    </div>
+    {{bar_plot.div| safe}}
+    <br />
+    {{radar.div| safe}}
+    <br />
+    <a href="/admin/csvdownload/"><h1>Скачать данные</h1></a>
+
+{% endblock %}
+
+{% block scriptlinks %}
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.0.0.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.0.0.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.0.0.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.0.0.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-3.0.0.min.js"
+        crossorigin="anonymous"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    var input1 = document.getElementById('faculty');
+    var input2 = document.getElementById('year')
+    if (localStorage['faculty'] || localStorage['year']) {
+       input1.value = localStorage['faculty'];
+       input2.value = localStorage['year']
+    }
+    input1.onchange = function () {
+        localStorage['faculty'] = this.value;
+    }
+    input2.onchange = function () {
+        localStorage['year'] = this.value;
+    }
+    });
+
+    </script>
+    {{bar_plot.script| safe}}
+    {{radar.script| safe}}
+{% endblock %}
