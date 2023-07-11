@@ -1,3 +1,4 @@
+import csv
 import io
 from collections import namedtuple
 from django.shortcuts import render, redirect
@@ -6,7 +7,6 @@ from django.utils import timezone
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Block, Question, Answer, SecretCode, Respondent, Faculty
 from .digutils import create_bar
-import pandas as pd
 
 # Create your views here.
 
@@ -223,9 +223,13 @@ def download_csv(request):
         }
 
         data.append({**temp, **answers})
-    df = pd.DataFrame(data)
+
     buffer = io.StringIO()
-    df.to_csv(buffer)
+    keys = data[0].keys()
+
+    writer = csv.DictWriter(buffer, keys)
+    writer.writeheader()
+    writer.writerows(data)
 
     buffer.seek(0)
     response = HttpResponse(buffer, content_type='text/csv')
