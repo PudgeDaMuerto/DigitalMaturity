@@ -1,5 +1,14 @@
 # Digital Maturity Django App
 
+### About
+
+The point of whole work was to create some digital resource that applies mathematical models for an accurately
+determine digital maturity of academic members of the university.
+
+The dump.sql file contains the necessary rows for survey including weights for mathematical model.
+
+For hosting web-application inside Docker container used Nginx and Gunicorn.
+
 ### Installation with Docker:
 
 1. Clone repository, create and start containers
@@ -36,6 +45,6 @@
     psql -h '0.0.0.0' -U "$POSTGRES_USER" "$POSTGRES_DB" < dump.sql
    ```
     or for windows in powershell:
-    ```shell
-    docker compose exec postgres_db psql -h 0.0.0.0 --username=<POSTGRES_USER> <POSTGRES_DB> < dump.sql
+    ```powershell
+    docker compose exec postgres_db --% psql -h 0.0.0.0 --username=<POSTGRES_USER> <POSTGRES_DB> < dump.sql
     ```
