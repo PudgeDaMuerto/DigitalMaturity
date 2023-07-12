@@ -9,6 +9,19 @@ The dump.sql file contains the necessary rows for survey including weights for m
 
 For hosting web-application inside Docker container used Nginx and Gunicorn.
 
+### Stack
+- Python3
+- Django
+- Django Rest Framework
+- Nginx
+- Gunicorn
+- Docker
+- PostgreSQL
+
+### Database ER-diagram
+
+<img src="https://github.com/PudgeDaMuerto/DigitalMaturity/assets/29519431/92b71de7-7ae3-4a19-b9d5-c3a777c11534.png" width=700>
+
 ### Installation with Docker:
 
 1. Clone repository, create and start containers
